@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan Spesial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 20px 30px;
+      max-width: 400px;
+      text-align: center;
+    }
+    h1 {
+      color: #0077b6;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+      font-size: 1em;
+    }
+    button {
+      background-color: #0077b6;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005f8a;
+    }
+  </style>
+</head>
+<body>
+  <!-- Halaman Pembuka -->
+  <div id="welcomePage" class="container">
+    <h1>Hai, Kak!</h1>
+    <p>Ini ada pesan buat U. Semoga U baca yaww!!</p>
+    <button id="startBtn" onclick="startMessage()">Mulai</button>
+  </div>
+
+  <!-- Halaman Isi -->
+  <div id="messagePage" class="container" style="display:none;">
+    <h1>Pesan Spesial</h1>
+    <p id="message">Ehh, maaf yaw kalau ku ganggu waktu U. Rasanya ada yang kurang kalau nggak ada chat dari U kayak biasanya.Ehehehe :p</p>
+    <button id="nextBtn" onclick="nextPage()">Lanjut</button>
+
+    <!-- Audio MP3 otomatis yang diputar setelah halaman pembuka -->
+    <audio id="audio" autoplay>
+      <source src="audio/audio.mp3" type="audio/mpeg">
+      Browser kamu tidak mendukung audio tag.
+    </audio>
+  </div>
+
+  <script>
+    // Array halaman pesan
+    const pages = [
+      "Ehh, maaf yaw kalau ku ganggu waktu U. Rasanya ada yang kurang kalau nggak ada chat dari U kayak biasanya.Ehehehe :p",
+      "U lagi sibuk ya? ku gatau buat ini ngapain tapi yg pasti gtw kenapa pen buat aja, jadi ku cuma nyoba buat ini iseng aja. Ku pengin nyapa u aja sih hehehe, soalnya aneh rasanya kalau diem-dieman gini, padahal biasanya kita chatan terus walaupun kadang cuma spam setiker atau bahas hal random lainyaa.",
+      "Semoga U nggak marah ya misal ku tiba-tiba nge-chat hal hal random kaya gitu hehehe. Ku sih seneng banget bisa cerita cerita ke u kaya biasanya dan juga u mejadi pendengar terbaik buat ku hehehe. tapi misal u lagi sibuk gitu ya udahh.. nggak apa-apa, aku ngerti kok :p",
+      "Semangat terus ya, Kak!!!! Jaga kesehatan, jangan lupa istirahat juga. Makasih udah mau baca ini. hehehehe"
+    ];
+
+    // Index halaman saat ini
+    let currentPage = 0;
+
+    // Fungsi untuk memulai pesan dan menampilkan halaman isi
+    function startMessage() {
+      // Sembunyikan halaman pembuka
+      document.getElementById("welcomePage").style.display = "none";
+      // Tampilkan halaman pesan
+      document.getElementById("messagePage").style.display = "block";
+      // Putar lagu
+      document.getElementById("audio").play();
+    }
+
+    // Fungsi untuk mengganti halaman
+    function nextPage() {
+      currentPage++;
+      const messageElement = document.getElementById("message");
+      const nextButton = document.getElementById("nextBtn");
+
+      if (currentPage < pages.length - 1) {
+        messageElement.innerText = pages[currentPage];
+      } else if (currentPage === pages.length - 1) {
+        messageElement.innerText = pages[currentPage];
+        nextButton.innerText = "Terima Kasih!";
+      }
+    }
+  </script>
+</body>
+</html>
